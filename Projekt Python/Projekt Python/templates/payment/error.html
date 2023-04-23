@@ -1,0 +1,14 @@
+
+{% extends "./sub_base.html" %}
+{% block title %}Błąd{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="col-12 col-lg-6">
+    <h3 class="mb-4">Błąd zamówienia</h3>
+    <p>Skontaktuj się z naszym zespołem obsługi klienta</p>
+    <a href="{% url "users:dashboard" %}">Moje konto</a>
+  </div>     
+</div>
+
+{% endblock %}

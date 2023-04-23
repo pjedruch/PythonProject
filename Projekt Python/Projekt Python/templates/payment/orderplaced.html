@@ -1,0 +1,13 @@
+{% extends "./sub_base.html" %}
+{% block title %}Zamówienie złożone{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="col-12 col-lg-6  mx-auto">
+        <h3 class="mb-4">Zamówienie zostało złożone</h3>
+        <p>Sprawdź swoją skrzynkę e-mail w celu potwierdzenia</p>
+        <a href="{% url "users:dashboard" %}">Zobacz zamówienia</a>      
+    </div>
+</div>
+
+{% endblock %}

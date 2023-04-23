@@ -1,0 +1,7 @@
+{% autoescape off %}
+Witaj {{ user.user_name }},
+
+Twoje konto zostało utworzone. Potwierdż swój adress email klikając na link poniżej:
+
+http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+{% endautoescape %}

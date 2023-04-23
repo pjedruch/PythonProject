@@ -1,0 +1,117 @@
+{% extends "./sub_base.html" %}
+{% load static %}
+{% block title %}Dokonanie płatności{% endblock %}
+
+{% block sub_content %}
+<form id="payment-form">
+  <h3 class="mb-3">Adres</h3>
+  <div id="card-errors" class="a" role="alert"></div>
+  <div class="row g-3">
+    <div class="col-sm-7">
+      <label for="firstName" class="form-label">Imię i nazwisko</label>
+      <input
+        type="text"
+        class="form-control"
+        id="custName"
+        placeholder=""
+        required
+      />
+      <div class="invalid-feedback">Wymagane jest prawidłowe imię.</div>
+    </div>
+    <div class="col-12">
+      <label for="email" class="form-label">
+        Email
+      </label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        disabled
+        value="{{request.user.email}}"
+        placeholder="you@example.com"
+      />
+    </div>
+
+    <div class="col-12">
+      <label for="phone" class="form-label">
+        Telefon
+      </label>
+      <input
+        type="phone"
+        class="form-control"
+        id="phone"
+        placeholder="+48 XXX XXX XXX"
+      />
+    </div>
+
+    <div class="col-12">
+      <label for="address" class="form-label">Ulica i numer domu</label>
+      <input
+        type="text"
+        class="form-control"
+        id="custAdd"
+        placeholder="ul.P..."
+        required
+      />
+      <div class="invalid-feedback">Proszę wprowadzić adres wysyłki.</div>
+    </div>
+    <div class="col-12">
+      <label for="address2" class="form-label">
+        Misto
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="custAdd2"
+        placeholder="Rzeszów"
+      />
+    </div>
+    <div class="col-md-3">
+      <label for="Postcode" class="form-label">Kod pocztowy</label>
+      <input
+        type="text"
+        class="form-control"
+        id="postCode"
+        placeholder="XX-XXX"
+        required
+      />
+      <div class="invalid-feedback">Wymagany kod pocztowy.</div>
+    </div>
+
+    <div class="col-12">
+      <label for="address2" class="form-label">
+        Sposób płatności
+      </label>
+      <select 
+        id="payment_type"
+        class="form-control"
+      >
+        <option value="card" selected>Karta płatnicza</option>
+        <option value="cash">Gotówka</option>
+      </select>
+    </div>
+  </div>
+  <hr class="my-4" />
+  <div id="payment_type_card">
+    <h4 class="mb-3">Opłata</h4>
+    <label for="card-element">Karta kredytowa lub debetowa</label>
+    <div id="card-element" class="form-control form-control-payment"></div>
+    <hr class="my-4" />
+  </div>
+  <button
+    id="submit"
+    class="btn btn-primary w-100 fw-bold"
+    data-secret="{{ client_secret }}"
+  >
+    Zapłacić
+  </button>
+</form>
+
+<script>
+  var STRIPE_PUBLISHABLE_KEY = "{{STRIPE_PUBLISHABLE_KEY}}";
+  var CSRF_TOKEN = "{{ csrf_token }}";
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'payment/index.js' %}" data-rel-js></script>
+
+{% endblock %}

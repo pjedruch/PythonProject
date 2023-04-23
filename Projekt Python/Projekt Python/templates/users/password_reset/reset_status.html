@@ -1,0 +1,19 @@
+{% extends "../sub_base.html" %}
+{% block title %}Resetowanie hasła{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <div class="text-center">
+        {% if 'email' in request.get_full_path %}
+                <h3 class="mb-4">Resetowanie hasła powiodło się</h3>
+                <p>Sprawdź swoją skrzynkę e-mail, aby uzyskać instrukcje</p>
+        {% endif%}
+        {% if 'complete' in request.get_full_path %}
+                <h3 class="mb-4">Resetowanie hasła powiodło się</h3>
+                <a href="{% url "users:login" %}">Zaloguj sie</a>
+        {% endif%}
+    </div>       
+</div>
+  
+{% endblock %}
